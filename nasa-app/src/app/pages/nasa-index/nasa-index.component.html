@@ -1,0 +1,23 @@
+<div class="container my-5 py-5">
+  <div class="card my-5 p-3">
+    <div class="card-body text-center">
+      <h1 class="title-page">{{titlePage}}</h1>
+      <div class="line"></div>
+      <div class="slide-in-bck-center">
+        <iframe
+          style="width: 100% !important;
+          height : 70vh !important;
+          border-radius: 10px !important;
+          border : 10px solid white !important;
+          box-shadow : 0px 0px 20px 4px #0000003b !important;"
+          [src]="sanitizer.bypassSecurityTrustResourceUrl(apodModel.url)"
+          width="100%"
+          height="100%">
+        </iframe>
+      </div>
+      <h1 class="subtitle-page">{{apodModel.title}}</h1>
+      <p class="text-date">{{apodModel.date | date: 'dd/MM/yyyy'}}</p>
+      <p class="text-explanation">{{apodModel.explanation}}</p>
+    </div>
+  </div>
+</div>

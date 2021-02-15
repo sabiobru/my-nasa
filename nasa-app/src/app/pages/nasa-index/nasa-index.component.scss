@@ -1,0 +1,41 @@
+/* Importing Effects. */
+@import './../../../assets/effects/effects.scss';
+
+div.container.my-5.py-5 {
+
+  div.card.my-5.p-3 {
+    box-shadow: none !important;
+
+    div.card-body.text-center {
+
+      h1.title-page {
+        font-family: 'Nasalization Rg', sans-serif;
+      }
+
+      div.line {
+        border-top: 1px solid #d4d4d4;
+        width     : 100%;
+        margin    : 20px auto;
+      }
+
+      h1.subtitle-page {
+        margin     : 30px auto;
+        font-family: 'Saira Condensed', sans-serif;
+        font-weight: 600;
+      }
+
+      p.text-explanation {
+        text-align : justify;
+        font-family: 'Saira Condensed', sans-serif;
+        font-size  : 1.5rem;
+      }
+
+      p.text-date {
+        text-align : justify;
+        font-family: 'Saira Condensed', sans-serif;
+        font-size  : 1.5rem;
+        font-weight: bold;
+      }
+    }
+  }
+}
