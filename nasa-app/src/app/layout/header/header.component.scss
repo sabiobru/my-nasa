@@ -1,4 +1,9 @@
+/* Importing Effects. */
+@import './../../../assets/effects/effects.scss';
+
 nav.navbar.navbar-light.bg-light.shadow {
+  background-color: #0b3d91 !important;
+
   a.navbar-brand {
 
     img.nav-logo {
@@ -10,10 +15,14 @@ nav.navbar.navbar-light.bg-light.shadow {
     span.nav-title {
       font-family: 'Nasalization Rg', sans-serif;
       font-size  : 2rem;
-      position   : absolute;
-      left       : 5.5rem;
-      top        : 1.2rem;
+      font-weight: 100;
+      text-shadow: 0 0 10px black;
+      color      : white;
+      position   : relative;
+      left       : 0;
+      top        : 0;
+
     }
-    
+
   }
 }
