@@ -8,6 +8,17 @@ div.container.my-5.py-5 {
 
     div.card-body.text-center {
 
+      div.row {
+        div.col-md-12.text-left {
+          span.original-url {
+            text-transform: lowercase;
+            font-weight   : bold;
+            font-size     : smaller;
+            color         : gray;
+          }
+        }
+      }
+
       h1.title-page {
         font-family: 'Nasalization Rg', sans-serif;
       }
@@ -35,6 +46,11 @@ div.container.my-5.py-5 {
         font-family: 'Saira Condensed', sans-serif;
         font-size  : 1.5rem;
         font-weight: bold;
+      }
+
+      img.img-bottom-article {
+        width : 200px;
+        margin: 20px auto;
       }
     }
   }
