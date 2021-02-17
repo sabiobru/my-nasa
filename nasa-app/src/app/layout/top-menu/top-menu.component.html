@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="menu-box">
+    <div class="row">
+      <div *ngFor="let item of menuItens">
+        <div class="col-md-2 badge-menu-item">
+          <span class="badge badge-custom bg-secondary">
+            <a [routerLink]="[ item.route ]">{{item['value']}}</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

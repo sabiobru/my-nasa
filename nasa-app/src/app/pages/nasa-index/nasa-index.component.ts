@@ -17,8 +17,13 @@ export class NasaIndexComponent implements OnInit {
   ) { }
 
   apodObj: any;
-  titlePage: string = "Astronomy Picture of the Day";
+  titlePage = 'Astronomy Picture of the Day';
+  imageName: any;
+  imageSource: any;
 
+  /**
+   * @description: Objeto que a API deve retornar
+   */
   apodModel = {
     copyright: '',
     date: '',
@@ -30,9 +35,7 @@ export class NasaIndexComponent implements OnInit {
     url: '',
   };
 
-
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.getApod();
   }
 
@@ -41,19 +44,19 @@ export class NasaIndexComponent implements OnInit {
    * @description: Método para retornar 'Astronomy Picture of the Day' (Imagem Astronômica do dia).
    * @returns: object
    */
-  public getApod() {
-    try {
-      this.nasaService.getApod()
-        .subscribe(apod => {
-          this.apodObj = apod;
-          console.log(this.apodObj);
-          this.apodModel.url = apod['url'];
-          this.apodModel.title = apod['title'];
-          this.apodModel.explanation = apod['explanation'];
-          this.apodModel.date = apod['date'];
-        });
-    }
-    catch { }
+  public getApod(): void {
+    this.nasaService.getApod()
+      .subscribe(apod => {
+        this.apodObj = apod;
+        console.log(this.apodObj);
+        this.apodModel.media_type = apod['media_type'];
+        this.apodModel.url = apod['url'];
+        this.imageName = this.apodModel.url.split('/')[6];
+        this.imageSource = this.apodModel.url.split('/')[2];
+        this.apodModel.title = apod['title'];
+        this.apodModel.explanation = apod['explanation'];
+        this.apodModel.date = apod['date'];
+      });
   }
 }
 

@@ -1,0 +1,42 @@
+div.container.my-5.py-5 {
+
+  div.card.my-5.p-3 {
+    box-shadow: none !important;
+
+    div.card-body.text-center {
+
+      h1.title-page {
+        font-family   : 'Nasalization Rg', sans-serif;
+        text-transform: uppercase;
+      }
+
+      div.line {
+        border-top: 1px solid #d4d4d4;
+        width     : 100%;
+        margin    : 20px auto;
+      }
+    }
+  }
+}
+
+.custom-day {
+  text-align: center;
+  padding   : 0.185rem 0.25rem;
+  display   : inline-block;
+  height    : 2rem;
+  width     : 2rem;
+}
+
+.custom-day.focused {
+  background-color: #e6e6e6;
+}
+
+.custom-day.range,
+.custom-day:hover {
+  background-color: rgb(2, 117, 216);
+  color           : white;
+}
+
+.custom-day.faded {
+  background-color: rgba(2, 117, 216, 0.5);
+}
