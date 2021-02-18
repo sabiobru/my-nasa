@@ -36,12 +36,12 @@ export class NeowsComponent implements OnInit {
 
 
 
-  formatDate(sd: any) {
+  formatDate(sd: any): void {
     this.startDateFormat = this.datepipe.transform(sd, 'yyyy-MM-dd');
     this.endDateFormat = this.startDateFormat;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.formatDate(this.startDate);
     this.getNeo(this.startDateFormat, this.endDateFormat);
   }
