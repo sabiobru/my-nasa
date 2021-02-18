@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
-import { concat } from 'rxjs';
+import { DatePipe } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule } from 'src/app/app.module';
+import { NasaService } from '../../../services/nasa.service';
+
+
 
 @Component({
   selector: 'app-neows',
@@ -9,48 +14,67 @@ import { concat } from 'rxjs';
 })
 
 export class NeowsComponent implements OnInit {
+  neoObject: any;
+  startDate = new Date();
+  endDate = this.startDate;
 
-  constructor(calendar: NgbCalendar) {
-    this.fromDate = calendar.getToday();
-    this.toDate = calendar.getNext(calendar.getToday(), 'd', 20);
-  }
-
+  startDateFormat: any;
+  endDateFormat: any;
   titlePage = 'NEO - Feed';
-  hoveredDate: NgbDate | null = null;
-  fromDate: NgbDate;
-  toDate: NgbDate | null = null;
+  elementCount = 0;
 
-  start_date: any;
+  errorMessage = null;
+  errorFlag = false;
+  listDays: any;
 
+
+  constructor(
+    private nasaservice: NasaService,
+    public datepipe: DatePipe
+  ) { }
+
+
+
+
+  formatDate(sd: any) {
+    this.startDateFormat = this.datepipe.transform(sd, 'yyyy-MM-dd');
+    this.endDateFormat = this.startDateFormat;
+  }
 
   ngOnInit() {
-    this.start_date =
-      (
-        `${this.fromDate['day'] / this.fromDate['month'] / this.fromDate['year']}`
-      );
+    this.formatDate(this.startDate);
+    this.getNeo(this.startDateFormat, this.endDateFormat);
   }
 
-  onDateSelection(date: NgbDate): void {
-    if (!this.fromDate && !this.toDate) {
-      this.fromDate = date;
-    } else if (this.fromDate && !this.toDate && date.after(this.fromDate)) {
-      this.toDate = date;
-    } else {
-      this.toDate = null;
-      this.fromDate = date;
-    }
+  getNeo(sd: any, ed: any): void {
+    this.nasaservice.getNeows(sd, ed)
+      .subscribe(neo => {
+        this.errorFlag = false;
+        this.elementCount = neo.element_count;
+
+        this.neoObject = neo;
+        console.log(this.neoObject);
+
+
+        // const teste = data.forEach(d => {
+
+        //   let name: string = d.name;
+        //   console.log(name);
+
+        // });
+
+
+
+      },
+        error => {
+          this.errorFlag = true;
+          this.errorMessage = 'Invalid period. Choose an interval of maximum 7 days';
+        });
   }
 
-  isHovered(date: NgbDate): boolean {
-    return this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate);
-  }
-
-  isInside(date: NgbDate): boolean {
-    return this.toDate && date.after(this.fromDate) && date.before(this.toDate);
-  }
-
-  isRange(date: NgbDate): boolean {
-    return date.equals(this.fromDate) || (this.toDate && date.equals(this.toDate)) || this.isInside(date) || this.isHovered(date);
+  onSearch(): void {
+    this.formatDate(this.startDate);
+    this.getNeo(this.startDateFormat, this.endDateFormat);
   }
 
 }

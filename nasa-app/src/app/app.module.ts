@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +11,7 @@ import { TopMenuComponent } from './layout/top-menu/top-menu.component';
 
 import { NasaIndexComponent } from './pages/nasa-index/nasa-index.component';
 import { NeowsComponent } from './pages/neows/neows.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,11 +26,12 @@ import { NeowsComponent } from './pages/neows/neows.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     AppRoutingModule,
     NgbModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 

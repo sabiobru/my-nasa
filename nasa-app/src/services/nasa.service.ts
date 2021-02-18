@@ -20,7 +20,7 @@ export class NasaService {
    */
 
   public getApod(): Observable<any> {
-    const subUrl = '/planetary/apod';
+    const subUrl = '/planetary/apod?';
     return this.httpClient.get(this.apiUrl + subUrl + this.apiKey);
   }
 
@@ -28,11 +28,9 @@ export class NasaService {
    * ! GET: NEO - Near Earth Object
    */
   public getNeows(START_DATE: Date, END_DATE: Date): Observable<any> {
-    const subUrl = '/neo/rest/v1/feed';
+    const subUrl = '/neo/rest/v1/feed?';
     const and = '&';
-    return this.httpClient.get(
-      this.apiUrl + subUrl + START_DATE + and + END_DATE + this.apiKey
-    );
+    return this.httpClient.get(`${this.apiUrl + subUrl + 'start_date=' + START_DATE + and + 'end_date=' + END_DATE + and + this.apiKey}`);
   }
 
 
